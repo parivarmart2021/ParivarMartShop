@@ -2,7 +2,7 @@
   "name": "Parivar Mart",
   "short_name": "ParivarMart",
   "description": "Premium Online Grocery Shopping in Rasayani. Fresh produce, household essentials, and fast delivery.",
-  "start_url": "/",
+  "start_url": "https://parivar-mart-shop.vercel.app/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#023535",
