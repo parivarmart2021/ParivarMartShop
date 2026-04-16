@@ -11,26 +11,26 @@
   "icons": [
     {
       "src": "/icons/icon-192x192.png",
-      "sizes": "1024x1024",
-      "type": "image/jpeg",
+      "sizes": "192x192",
+      "type": "image/png",
       "purpose": "any"
     },
     {
       "src": "/icons/icon-192x192.png",
-      "sizes": "1024x1024",
-      "type": "image/jpeg",
+      "sizes": "192x192",
+      "type": "image/png",
       "purpose": "maskable"
     },
     {
       "src": "/icons/icon-512x512.png",
-      "sizes": "1024x1024",
-      "type": "image/jpeg",
+      "sizes": "512x512",
+      "type": "image/png",
       "purpose": "any"
     },
     {
       "src": "/icons/icon-512x512.png",
-      "sizes": "1024x1024",
-      "type": "image/jpeg",
+      "sizes": "512x512",
+      "type": "image/png",
       "purpose": "maskable"
     }
   ],
@@ -38,14 +38,14 @@
     {
       "src": "/screenshots/desktop.png",
       "sizes": "1920x911",
-      "type": "image/jpeg",
+      "type": "image/png",
       "form_factor": "wide",
       "label": "Parivar Mart Desktop View"
     },
     {
       "src": "/screenshots/mobile.png",
       "sizes": "500x715",
-      "type": "image/jpeg",
+      "type": "image/png",
       "form_factor": "narrow",
       "label": "Parivar Mart Mobile View"
     }
@@ -54,12 +54,12 @@
     {
       "name": "My Account",
       "url": "/profile",
-      "icons": [{ "src": "/icons/icon-192x192.png", "sizes": "1024x1024" }]
+      "icons": [{ "src": "/icons/icon-192x192.png", "sizes": "192x192" }]
     },
     {
       "name": "My Cart",
       "url": "/cart",
-      "icons": [{ "src": "/icons/icon-192x192.png", "sizes": "1024x1024" }]
+      "icons": [{ "src": "/icons/icon-192x192.png", "sizes": "192x192" }]
     }
   ],
   "categories": ["shopping", "grocery"]
