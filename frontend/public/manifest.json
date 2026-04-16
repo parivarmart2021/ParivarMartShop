@@ -2,7 +2,7 @@
   "name": "Parivar Mart",
   "short_name": "ParivarMart",
   "description": "Premium Online Grocery Shopping in Rasayani. Fresh produce, household essentials, and fast delivery.",
-  "start_url": "https://parivar-mart-shop.vercel.app/",
+  "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#023535",
@@ -12,25 +12,25 @@
     {
       "src": "/icons/icon-192x192.png",
       "sizes": "1024x1024",
-      "type": "image/png",
+      "type": "image/jpeg",
       "purpose": "any"
     },
     {
       "src": "/icons/icon-192x192.png",
       "sizes": "1024x1024",
-      "type": "image/png",
+      "type": "image/jpeg",
       "purpose": "maskable"
     },
     {
       "src": "/icons/icon-512x512.png",
       "sizes": "1024x1024",
-      "type": "image/png",
+      "type": "image/jpeg",
       "purpose": "any"
     },
     {
       "src": "/icons/icon-512x512.png",
       "sizes": "1024x1024",
-      "type": "image/png",
+      "type": "image/jpeg",
       "purpose": "maskable"
     }
   ],
@@ -38,14 +38,14 @@
     {
       "src": "/screenshots/desktop.png",
       "sizes": "1920x911",
-      "type": "image/png",
+      "type": "image/jpeg",
       "form_factor": "wide",
       "label": "Parivar Mart Desktop View"
     },
     {
       "src": "/screenshots/mobile.png",
       "sizes": "500x715",
-      "type": "image/png",
+      "type": "image/jpeg",
       "form_factor": "narrow",
       "label": "Parivar Mart Mobile View"
     }
