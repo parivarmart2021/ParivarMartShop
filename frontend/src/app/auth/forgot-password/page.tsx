@@ -154,7 +154,7 @@ export default function ForgotPassword() {
                   {otp.map((digit, index) => (
                     <input
                       key={index}
-                      ref={(el) => (otpInputs.current[index] = el)}
+                      ref={(el) => { otpInputs.current[index] = el; }}
                       type="text"
                       maxLength={1}
                       value={digit}
