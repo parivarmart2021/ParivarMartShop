@@ -7,6 +7,7 @@ import { GoogleAuthProvider } from "@/context/GoogleAuthProvider";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { Toaster } from "react-hot-toast";
+import InstallPrompt from "@/components/common/InstallPrompt";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -15,6 +16,14 @@ export const metadata: Metadata = {
   description: "Parivar Mart is your one-stop shop for high-quality groceries, household items, and more in Rasayani. Experience premium service and fast delivery.",
   keywords: "supermarket, grocery, Parivar Mart, Rasayani, delivery, home delivery, fresh produce, snacks, household essentials",
   authors: [{ name: "Parivar Mart Team" }],
+  manifest: "/manifest.json",
+  themeColor: "#023535",
+  viewport: "width=device-width, initial-scale=1, maximum-scale=1",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "Parivar Mart",
+  },
   openGraph: {
     title: "Parivar Mart | Premium Online Grocery Shopping",
     description: "Shop for the freshest groceries and household essentials at Parivar Mart.",
@@ -48,6 +57,7 @@ export default function RootLayout({
                 {children}
               </main>
               <Footer />
+              <InstallPrompt />
             </CartProvider>
           </GoogleAuthProvider>
         </AuthProvider>
