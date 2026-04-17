@@ -87,8 +87,8 @@ export default function Home() {
           >
             <div className="relative z-10 rounded-2xl overflow-hidden shadow-2xl border-8 border-white">
               <Image 
-                src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&q=80&w=1000" 
-                alt="Supermarket" 
+                src="/hero-shop.jpg" 
+                alt="Parivar Mart Shop Front" 
                 width={800}
                 height={600}
                 priority
