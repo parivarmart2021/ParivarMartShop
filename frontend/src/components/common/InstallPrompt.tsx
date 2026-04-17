@@ -78,8 +78,8 @@ export default function InstallPrompt() {
             </button>
 
             <div className="flex items-center gap-4">
-              <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center text-primary shadow-lg p-2 shrink-0">
-                <Smartphone size={32} />
+              <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center shadow-lg p-1 shrink-0">
+                <img src="/logo.png" alt="Parivar Mart" className="w-full h-full object-contain" />
               </div>
               <div className="flex flex-col gap-0.5">
                 <h3 className="font-black text-lg tracking-tight leading-tight">Install Parivar Mart</h3>

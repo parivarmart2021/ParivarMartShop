@@ -10,9 +10,11 @@ const Footer = () => {
           {/* Brand */}
           <div className="flex flex-col gap-6">
             <Link href="/" className="flex items-center gap-2 group">
-              <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-xl">P</span>
-              </div>
+              <img 
+                src="/logo.png" 
+                alt="Parivar Mart" 
+                className="w-10 h-10 object-contain" 
+              />
               <span className="text-2xl font-bold tracking-tight">ParivarMart</span>
             </Link>
             <p className="text-gray-400 leading-relaxed">

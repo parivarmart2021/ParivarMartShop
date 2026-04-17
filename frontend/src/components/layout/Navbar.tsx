@@ -38,9 +38,11 @@ const Navbar = () => {
       <div className="container mx-auto px-4 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 group">
-          <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center group-hover:rotate-12 transition-transform duration-300">
-            <span className="text-white font-bold text-xl">P</span>
-          </div>
+          <img 
+            src="/logo.png" 
+            alt="Parivar Mart" 
+            className="w-12 h-12 object-contain group-hover:scale-110 transition-transform duration-300" 
+          />
           <span className={`text-2xl font-bold tracking-tight ${isScrolled ? 'text-white' : 'text-dark'}`}>
             Parivar<span className="text-primary">Mart</span>
           </span>
