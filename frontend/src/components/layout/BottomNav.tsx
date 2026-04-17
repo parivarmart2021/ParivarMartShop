@@ -23,29 +23,29 @@ const BottomNav = () => {
   if (pathname.startsWith('/admin')) return null;
 
   return (
-    <div className="lg:hidden fixed bottom-6 left-0 right-0 z-50 px-6">
-      <div className="bg-white/95 backdrop-blur-md border border-gray-100 rounded-[35px] shadow-[0_15px_50px_rgba(0,0,0,0.15)] flex items-center justify-around py-3 px-2">
+    <div className="lg:hidden fixed bottom-6 left-0 right-0 z-50 px-8">
+      <div className="bg-white/95 backdrop-blur-md border border-gray-100 rounded-[30px] shadow-[0_15px_40px_rgba(0,0,0,0.12)] flex items-center justify-around py-2 px-1">
         {navItems.map((item) => {
           const isActive = pathname === item.path;
           return (
             <Link 
               key={item.name} 
               href={item.path} 
-              className={`relative flex flex-col items-center gap-1.5 flex-1 transition-all duration-300 ${isActive ? 'text-cyan-600' : 'text-gray-400 hover:text-gray-600'}`}
+              className={`relative flex flex-col items-center gap-1 flex-1 transition-all duration-300 ${isActive ? 'text-cyan-600' : 'text-gray-400 hover:text-gray-600'}`}
             >
-              <div className={`p-3 rounded-full transition-all duration-500 ${isActive ? 'bg-cyan-50 scale-110 shadow-sm' : ''}`}>
+              <div className={`p-2 rounded-full transition-all duration-500 ${isActive ? 'bg-cyan-50 scale-105 shadow-sm' : ''}`}>
                 {React.cloneElement(item.icon as React.ReactElement, { 
-                  size: 24,
+                  size: 20,
                   strokeWidth: isActive ? 2.5 : 2
                 })}
               </div>
               
-              <span className={`text-[9px] font-black uppercase tracking-[0.1em] transition-all duration-300 ${isActive ? 'opacity-100 translate-y-0' : 'opacity-60'}`}>
+              <span className={`text-[8px] font-black uppercase tracking-widest transition-all duration-300 ${isActive ? 'opacity-100' : 'opacity-60'}`}>
                 {item.name}
               </span>
               
               {item.badge !== undefined && item.badge > 0 && (
-                <span className="absolute top-1 right-2 bg-red-500 text-white text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center ring-2 ring-white">
+                <span className="absolute top-0 right-2 bg-red-500 text-white text-[8px] font-bold w-3.5 h-3.5 rounded-full flex items-center justify-center ring-2 ring-white">
                   {item.badge}
                 </span>
               )}
@@ -53,7 +53,7 @@ const BottomNav = () => {
               {isActive && (
                 <motion.div 
                   layoutId="activeDot"
-                  className="absolute -bottom-1 w-1.5 h-1.5 bg-cyan-600 rounded-full" 
+                  className="absolute -bottom-1 w-1 h-1 bg-cyan-600 rounded-full" 
                 />
               )}
             </Link>
