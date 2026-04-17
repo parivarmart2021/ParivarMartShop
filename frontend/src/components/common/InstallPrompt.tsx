@@ -9,6 +9,19 @@ export default function InstallPrompt() {
   const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
 
   useEffect(() => {
+    // Check if the user has already dismissed the prompt
+    const isDismissed = localStorage.getItem('pwa-prompt-dismissed');
+    if (isDismissed) {
+      const dismissedDate = new Date(isDismissed);
+      const now = new Date();
+      const diffDays = Math.ceil((now.getTime() - dismissedDate.getTime()) / (1000 * 60 * 60 * 24));
+      
+      // Don't show again for 7 days
+      if (diffDays < 7) {
+        return;
+      }
+    }
+
     // Check if the app is already installed
     if (window.matchMedia('(display-mode: standalone)').matches) {
       return;
@@ -25,6 +38,11 @@ export default function InstallPrompt() {
 
     return () => window.removeEventListener('beforeinstallprompt', handler);
   }, []);
+
+  const handleDismiss = () => {
+    setShowPrompt(false);
+    localStorage.setItem('pwa-prompt-dismissed', new Date().toISOString());
+  };
 
   const handleInstall = async () => {
     if (!deferredPrompt) return;
@@ -53,7 +71,7 @@ export default function InstallPrompt() {
             <div className="absolute -bottom-10 -left-10 w-24 h-24 bg-accent/10 rounded-full blur-xl" />
             
             <button 
-              onClick={() => setShowPrompt(false)}
+              onClick={handleDismiss}
               className="absolute top-4 right-4 p-1 hover:bg-white/10 rounded-full transition-colors"
             >
               <X size={18} />

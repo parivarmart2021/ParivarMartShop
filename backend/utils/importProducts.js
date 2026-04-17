@@ -3,11 +3,8 @@ const fs = require('fs');
 const path = require('path');
 const dotenv = require('dotenv');
 
-// This script can be run standalone to import products from CSV/Excel
-// Usage: node importProducts.js <path_to_csv> <has_item_code_true_false>
-
-const Product = require('./models/Product');
-const Category = require('./models/Category');
+const Product = require('../models/Product');
+const Category = require('../models/Category');
 
 const slugify = (text) => {
   return text
@@ -47,6 +44,25 @@ const parsePrice = (priceStr) => {
   return parseFloat(cleaned) || 0;
 };
 
+function parseCSVLine(line) {
+  const result = [];
+  let current = '';
+  let inQuotes = false;
+  for (let i = 0; i < line.length; i++) {
+    const char = line[i];
+    if (char === '"') {
+      inQuotes = !inQuotes;
+    } else if (char === ',' && !inQuotes) {
+      result.push(current.trim());
+      current = '';
+    } else {
+      current += char;
+    }
+  }
+  result.push(current.trim());
+  return result;
+}
+
 async function importFile(filePath, hasItemCode) {
   if (!fs.existsSync(filePath)) {
     throw new Error(`File not found: ${filePath}`);
@@ -61,16 +77,18 @@ async function importFile(filePath, hasItemCode) {
     const line = lines[i].trim();
     if (!line) continue;
 
-    const parts = line.match(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g);
-    if (!parts) continue;
+    const parts = parseCSVLine(line);
+    if (!parts || parts.length < 2) continue;
 
     let itemName, sellingPrice, mrp;
     if (hasItemCode === 'true' || hasItemCode === true) {
-      itemName = parts[1]?.replace(/"/g, '');
+      // Item Code, Item Name, Selling, M.R.P
+      itemName = parts[1];
       sellingPrice = parsePrice(parts[2]);
       mrp = parsePrice(parts[3]);
     } else {
-      itemName = parts[0]?.replace(/"/g, '');
+      // Item Name, Selling, M.R.P
+      itemName = parts[0];
       sellingPrice = parsePrice(parts[1]);
       mrp = parsePrice(parts[2]);
     }
@@ -86,7 +104,7 @@ async function importFile(filePath, hasItemCode) {
       discountPrice: (sellingPrice > 0 && mrp > 0 && sellingPrice < mrp) ? sellingPrice : 0,
       categoryName: categoryName,
       stock: 100,
-      unit: itemName.includes('KG') ? 'kg' : itemName.includes('GM') ? 'gm' : itemName.includes('LTR') ? 'ltr' : 'piece',
+      unit: itemName.toUpperCase().includes('KG') ? 'kg' : itemName.toUpperCase().includes('GM') ? 'gm' : itemName.toUpperCase().includes('LTR') ? 'ltr' : 'piece',
       isActive: true,
       description: `Premium quality ${itemName} available at Parivar Mart.`,
     });
@@ -96,21 +114,11 @@ async function importFile(filePath, hasItemCode) {
 }
 
 async function run() {
-  const args = process.argv.slice(2);
-  const filePath = args[0];
-  const hasItemCode = args[1] || 'false';
-
-  if (!filePath) {
-    console.log('Usage: node importProducts.js <path_to_csv> <has_item_code_true_false>');
-    process.exit(1);
-  }
-
-  dotenv.config({ path: path.join(__dirname, '.env') });
+  dotenv.config({ path: path.join(__dirname, '..', '.env') });
   const MONGO_URI = process.env.MONGO_URI;
 
   try {
     console.log('Connecting to MongoDB...');
-    // Fallback for environments with DNS issues
     try {
       await mongoose.connect(MONGO_URI, { serverSelectionTimeoutMS: 5000 });
     } catch (err) {
@@ -121,7 +129,15 @@ async function run() {
     }
     console.log('Connected.');
 
-    const { productsToAdd, categoriesToEnsure } = await importFile(filePath, hasItemCode);
+    // 1. Clean up messed up products
+    console.log('Cleaning up incorrectly imported products...');
+    const delResult = await Product.deleteMany({ images: '/uploads/products/placeholder.webp' });
+    console.log(`Deleted ${delResult.deletedCount} products.`);
+
+    const file1 = await importFile('../PRODUCT1.csv', true);
+    const file2 = await importFile('../PRODUCT 2.csv', false);
+    const productsToAdd = [...file1.productsToAdd, ...file2.productsToAdd];
+    const categoriesToEnsure = new Set([...file1.categoriesToEnsure, ...file2.categoriesToEnsure]);
 
     // Ensure categories
     const categoryMap = {};
@@ -170,6 +186,4 @@ async function run() {
   }
 }
 
-if (require.main === module) {
-  run();
-}
+run();
