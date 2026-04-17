@@ -6,6 +6,7 @@ import { CartProvider } from "@/context/CartContext";
 import { GoogleAuthProvider } from "@/context/GoogleAuthProvider";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import BottomNav from "@/components/layout/BottomNav";
 import { Toaster } from "react-hot-toast";
 import InstallPrompt from "@/components/common/InstallPrompt";
 
@@ -53,10 +54,11 @@ export default function RootLayout({
                 },
               }} />
               <Navbar />
-              <main className="flex-grow pt-24">
+              <main className="flex-grow pt-24 pb-20 lg:pb-0">
                 {children}
               </main>
               <Footer />
+              <BottomNav />
               <InstallPrompt />
               <script
                 dangerouslySetInnerHTML={{

@@ -61,19 +61,19 @@ export default function Home() {
               Fresh Groceries Delivered
             </div>
 
-            <h1 className="text-5xl lg:text-7xl font-bold leading-tight text-dark">
+            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold leading-tight text-dark">
               Your Family's <span className="text-primary">Trusted Store</span> Since 2021
             </h1>
             
-            <p className="text-xl text-gray-600 max-w-lg leading-relaxed">
+            <p className="text-lg sm:text-xl text-gray-600 max-w-lg leading-relaxed">
               Providing fast, reliable, and premium grocery shopping experience. Get the freshest products delivered to your doorstep in minutes.
             </p>
 
-            <div className="flex flex-wrap gap-4 mt-4">
-              <Link href="/products" className="btn-primary flex items-center gap-2 py-4">
+            <div className="flex flex-col sm:flex-row gap-4 mt-4">
+              <Link href="/products" className="btn-primary flex items-center justify-center gap-2 py-4 px-8">
                 Shop Now <ShoppingBag size={20} />
               </Link>
-              <Link href="/products?category=oils" className="btn-secondary flex items-center gap-2 py-4">
+              <Link href="/products?category=oils" className="btn-secondary flex items-center justify-center gap-2 py-4 px-8">
                 View Offers <ArrowRight size={20} />
               </Link>
             </div>
@@ -139,7 +139,7 @@ export default function Home() {
             <p className="text-gray-600 max-w-md">Explore our wide range of categories for all your household needs.</p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+          <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 sm:gap-6">
             {loading ? (
               [...Array(6)].map((_, i) => <div key={i} className="h-40 bg-gray-200 animate-pulse rounded-2xl" />)
             ) : (
@@ -173,7 +173,7 @@ export default function Home() {
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8">
           {loading ? (
              [...Array(4)].map((_, i) => <div key={i} className="h-80 bg-gray-200 animate-pulse rounded-2xl" />)
           ) : (

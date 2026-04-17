@@ -56,7 +56,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       )}
 
       {/* Image */}
-      <Link href={`/products/${product.slug}`} className="block overflow-hidden h-48 sm:h-64 relative">
+      <Link href={`/products/${product.slug}`} className="block overflow-hidden h-40 sm:h-64 relative">
         <img 
           src={getImageUrl(product.images?.[0])} 
           alt={product.name} 
@@ -75,7 +75,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         </div>
 
         <Link href={`/products/${product.slug}`}>
-          <h3 className="text-dark font-bold text-lg mb-1 group-hover:text-primary transition-colors line-clamp-1">
+          <h3 className="text-dark font-bold text-sm sm:text-lg mb-1 group-hover:text-primary transition-colors line-clamp-1">
             {product.name}
           </h3>
         </Link>
@@ -84,21 +84,21 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         <div className="mt-auto flex items-center justify-between">
           <div className="flex flex-col">
             {discount > 0 && (
-              <span className="text-gray-400 line-through text-xs">₹{product.price}</span>
+              <span className="text-gray-400 line-through text-[10px] sm:text-xs">₹{product.price}</span>
             )}
-            <span className="text-primary font-bold text-xl">₹{currentPrice}</span>
+            <span className="text-primary font-bold text-base sm:text-xl">₹{currentPrice}</span>
           </div>
 
           <button 
             onClick={handleAddToCart}
             disabled={product.stock <= 0}
-            className={`p-3 rounded-full shadow-md transition-all duration-300 active:scale-90 ${
+            className={`p-2 sm:p-3 rounded-full shadow-md transition-all duration-300 active:scale-90 ${
               product.stock > 0 
                 ? 'bg-primary text-white hover:bg-primary-hover hover:rotate-6' 
                 : 'bg-gray-300 text-gray-500 cursor-not-allowed'
             }`}
           >
-            <ShoppingCart size={20} />
+            <ShoppingCart size={16} className="sm:w-5 sm:h-5" />
           </button>
         </div>
       </div>
