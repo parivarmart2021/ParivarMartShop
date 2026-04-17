@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Home, Grid, ShoppingCart, User, Search } from 'lucide-react';
+import { Home, Grid, ShoppingCart, User, Package } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
 
 const BottomNav = () => {
@@ -12,10 +12,10 @@ const BottomNav = () => {
 
   const navItems = [
     { name: 'Home', path: '/', icon: <Home size={22} /> },
-    { name: 'Categories', path: '/products', icon: <Grid size={22} /> },
-    { name: 'Search', path: '/search', icon: <Search size={22} /> },
+    { name: 'Items', path: '/products', icon: <Grid size={22} /> },
+    { name: 'Orders', path: '/profile?tab=orders', icon: <Package size={22} /> },
     { name: 'Cart', path: '/cart', icon: <ShoppingCart size={22} />, badge: totalItems },
-    { name: 'Account', path: '/profile', icon: <User size={22} /> },
+    { name: 'Profile', path: '/profile', icon: <User size={22} /> },
   ];
 
   // Don't show on admin pages
